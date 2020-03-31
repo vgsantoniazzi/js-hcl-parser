@@ -1,0 +1,32 @@
+{
+  "name": "js-hcl-parser",
+  "version": "1.0.0",
+  "description": "Fully working version of HCL <> JSON parser for Javascript.",
+  "main": "dist/hcl.js",
+  "directories": {
+    "example": "examples",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vgsantoniazzi/js-hcl-parser.git"
+  },
+  "keywords": [
+    "hcl",
+    "json",
+    "parser",
+    "js"
+  ],
+  "author": "Victor Antoniazzi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vgsantoniazzi/js-hcl-parser/issues"
+  },
+  "homepage": "https://github.com/vgsantoniazzi/js-hcl-parser#readme",
+  "devDependencies": {
+    "mocha": "^7.1.1"
+  }
+}
