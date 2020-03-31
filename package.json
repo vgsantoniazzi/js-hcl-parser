@@ -1,6 +1,6 @@
 {
   "name": "js-hcl-parser",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Fully working version of HCL <> JSON parser for Javascript.",
   "main": "dist/hcl.js",
   "directories": {
