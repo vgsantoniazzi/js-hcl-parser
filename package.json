@@ -3,10 +3,6 @@
   "version": "1.0.1",
   "description": "Fully working version of HCL <> JSON parser for Javascript.",
   "main": "dist/hcl.js",
-  "directories": {
-    "example": "examples",
-    "test": "tests"
-  },
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha"
   },
