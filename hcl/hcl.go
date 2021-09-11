@@ -1,17 +1,33 @@
 package hcl
 
 import (
-	"fmt"
 	"bytes"
 	"encoding/json"
+	"fmt"
+
 	"github.com/hashicorp/hcl"
 	"github.com/hashicorp/hcl/hcl/printer"
+
+	hcl2 "github.com/hashicorp/hcl/v2"
+	hcl2syntax "github.com/hashicorp/hcl/v2/hclsyntax"
 )
-func Parse(input string) (string) {
+
+func Parse(input string) string {
 	var ast interface{}
-	err := hcl.Unmarshal([]byte(input), &ast)
+
+	file, diags := hcl2syntax.ParseConfig([]byte(input), "file.hcl", hcl2.Pos{Line: 1, Column: 1})
+	if diags.HasErrors() {
+		err := hcl.Unmarshal([]byte(input), &ast)
+		if err != nil {
+			return fmt.Sprintf("unable to parse JSON: %s", diags)
+		}
+	}
+	ast, err := convertFile(file)
 	if err != nil {
-		return fmt.Sprintf("unable to parse JSON: %s", err)
+		err := hcl.Unmarshal([]byte(input), &ast)
+		if err != nil {
+			return fmt.Sprintf("unable to convert to JSON: %s", err)
+		}
 	}
 
 	data, err := json.MarshalIndent(ast, "", "    ")
@@ -22,7 +38,7 @@ func Parse(input string) (string) {
 	return string(data)
 }
 
-func Stringify(input string) (string) {
+func Stringify(input string) string {
 	ast, err := hcl.Parse(input)
 	if err != nil {
 		return fmt.Sprintf("unable to parse HCL: %s", err)
